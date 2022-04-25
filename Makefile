@@ -2,7 +2,9 @@ SERVER_SRCS	=	srcs/server.c
 
 CLIENT_SRCS	=	srcs/client.c
 
-OBJS		=	$(SERVER_SRCS:.c=.o) $(CLIENT_SRCS:.c=.o)
+UTILS_SRCS	=	srcs/utils.c
+
+OBJS		=	$(SERVER_SRCS:.c=.o) $(CLIENT_SRCS:.c=.o) $(UTILS_SRCS:.c=.o)
 
 CC			=	gcc
 
@@ -19,8 +21,8 @@ CLIENT_NAME	= 	_client
 all:		$(NAME)
 
 $(NAME): 	$(OBJS)
-	$(CC) $(CFLAGS) $(SERVER_SRCS) -o $(SERVER_NAME) 
-	$(CC) $(CFLAGS) $(CLIENT_SRCS) -o $(CLIENT_NAME) 
+	$(CC) $(CFLAGS) $(SERVER_SRCS) $(UTILS_SRCS) -o $(SERVER_NAME) 
+	$(CC) $(CFLAGS) $(CLIENT_SRCS) $(UTILS_SRCS) -o $(CLIENT_NAME) 
 
 clean:
 	$(RM) $(OBJS)
