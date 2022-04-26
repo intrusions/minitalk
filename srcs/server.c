@@ -15,22 +15,22 @@
 static void	get_message(int signum)
 {
 	static char	c = 0;
-	static int	size = 7;
+	static int	bit = 7;
 
 	if (signum == SIGUSR1)
 	{
-		c += (1 << size);
-		size--;
+		c += (1 << bit);
+		bit--;
 	}
 	else if (signum == SIGUSR2)
-		size--;
-	if (size < 0)
+		bit--;
+	if (bit == -1)
 	{
 		ft_putchar_fd(c, 1);
 		if (!c)
 			ft_putchar_fd('\n', 1);
 		c = 0;
-		size = 7;
+		bit = 7;
 	}
 }
 
