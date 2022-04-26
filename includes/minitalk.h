@@ -14,13 +14,8 @@
 # define MINITALK_H
 
 # define TRUE 1
-# define FALSE 0
 # include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
 # include <signal.h>
-# include <sys/types.h>
-# include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);

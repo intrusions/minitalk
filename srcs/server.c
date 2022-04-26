@@ -14,24 +14,21 @@
 
 static void	get_message(int signum)
 {
-	static char	c = 0;
-	static int	bit = 7;
+	static char	c = 0x00;
+	static int	bit = 0x80;
 
 	if (signum == SIGUSR1)
-	{
-		c += (1 << bit);
-		bit--;
-	}
-	else if (signum == SIGUSR2)
-		bit--;
-	if (bit == -1)
+		c |= bit;
+	if (bit == 1)
 	{
 		ft_putchar_fd(c, 1);
 		if (!c)
 			ft_putchar_fd('\n', 1);
-		c = 0;
-		bit = 7;
+		c = 0x00;
+		bit = 0x80;
 	}
+	else
+		bit /= 2;
 }
 
 int	main(void)
