@@ -14,7 +14,7 @@
 
 static void	get_message(int signum)
 {
-	static char	c = 0x00;
+	static char	c = 0;
 	static int	size = 7;
 
 	if (signum == SIGUSR1)
@@ -29,7 +29,7 @@ static void	get_message(int signum)
 		ft_putchar_fd(c, 1);
 		if (!c)
 			ft_putchar_fd('\n', 1);
-		c = 0x00;
+		c = 0;
 		size = 7;
 	}
 }

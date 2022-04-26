@@ -21,7 +21,7 @@ static void	ft_send_char(int pid, char c)
 	{
 		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
-		else if (!((c >> i) & 1))
+		else
 			kill(pid, SIGUSR2);
 		i--;
 		usleep(100);
