@@ -39,7 +39,7 @@ static void	ft_send_message(int pid, char *message)
 
 int	main(int argc, char **argv)
 {
-	if (argc == 3)
+	if (argc == 3 && !(ft_atoi(argv[1]) <= 0))
 		ft_send_message(ft_atoi(argv[1]), argv[2]);
 	else
 		ft_putstr_fd("Incorrect number of arguments", 1);
