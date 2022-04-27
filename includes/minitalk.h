@@ -16,11 +16,17 @@
 # define TRUE 1
 # include <unistd.h>
 # include <signal.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *str);
+void	get_message(int signum);
+void	stock_message(char c);
+char	*print_message(char *str);
+char	*ft_strdup(const char *s);
 
 #endif
