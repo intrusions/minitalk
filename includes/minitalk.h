@@ -24,8 +24,8 @@ char	*ft_strdup(const char *s);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-void	get_message(int signum);
-void	stock_message(char c);
-char	*print_message(char *str);
+void	ft_get_message(int signum);
+void	ft_stock_message(char c);
+char	*ft_print_message(char *str);
 
 #endif

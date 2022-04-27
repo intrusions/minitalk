@@ -12,7 +12,7 @@
 
 #include "minitalk.h"
 
-void	get_message(int signum)
+void	ft_get_message(int signum)
 {
 	static char	c = 0x00;
 	static int	bit = 0x80;
@@ -21,7 +21,7 @@ void	get_message(int signum)
 		c |= bit;
 	if (bit == 1)
 	{
-		stock_message(c);
+		ft_stock_message(c);
 		c = 0x00;
 		bit = 0x80;
 	}
@@ -29,7 +29,7 @@ void	get_message(int signum)
 		bit /= 2;
 }
 
-void	stock_message(char c)
+void	ft_stock_message(char c)
 {
 	static char	*str = NULL;
 	char		*dest;
@@ -51,10 +51,10 @@ void	stock_message(char c)
 	str = ft_strdup(dest);
 	free(dest);
 	if (!c)
-		str = print_message(str);
+		str = ft_print_message(str);
 }
 
-char	*print_message(char *str)
+char	*ft_print_message(char *str)
 {
 	size_t	i;
 
@@ -70,8 +70,8 @@ int	main(void)
 {
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
-	signal(SIGUSR1, get_message);
-	signal(SIGUSR2, get_message);
+	signal(SIGUSR1, ft_get_message);
+	signal(SIGUSR2, ft_get_message);
 	while (TRUE)
 		pause();
 }

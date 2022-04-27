@@ -14,9 +14,9 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./includes
 
 NAME		= 	minitalk
 
-SERVER_NAME	= 	_server
+SERVER_NAME	= 	server
 
-CLIENT_NAME	= 	_client
+CLIENT_NAME	= 	client
 
 all:		$(NAME)
 
