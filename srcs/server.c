@@ -36,7 +36,6 @@ void	ft_stock_message(char c)
 	int			i;
 
 	i = 0;
-	dest = NULL;
 	dest = malloc(sizeof(char) * (ft_strlen(str) + 2));
 	if (str)
 	{
@@ -45,11 +44,11 @@ void	ft_stock_message(char c)
 			dest[i] = str[i];
 			i++;
 		}
+		free(str);
 	}
 	dest[i++] = c;
 	dest[i] = 0;
 	str = ft_strdup(dest);
-	free(dest);
 	if (!c)
 		str = ft_print_message(str);
 }
@@ -62,8 +61,7 @@ char	*ft_print_message(char *str)
 	while (str[++i])
 		ft_putchar_fd(str[i], 1);
 	ft_putchar_fd('\n', 1);
-	free(str);
-	return (NULL);
+	return (free(str), NULL);
 }
 
 int	main(void)
