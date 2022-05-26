@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xel <xel@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 17:06:04 by xel               #+#    #+#             */
-/*   Updated: 2022/04/25 17:06:04 by xel              ###   ########.fr       */
+/*   Created: 2022/05/26 17:43:37 by jucheval          #+#    #+#             */
+/*   Updated: 2022/05/26 17:43:37 by jucheval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_data	g_data;
 
-void	ft_receiveid_bit(int signum)
+void	ft_received_bit(int signum)
 {
 	if (signum == SIGUSR2)
 		g_data.received_bit = 1;
@@ -29,7 +29,7 @@ void	ft_received_message(int signum)
 	}
 }
 
-static void	ft_send_char(int pid, char c)
+void	ft_send_char(int pid, char c)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ static void	ft_send_char(int pid, char c)
 	}
 }
 
-static void	ft_send_message(int pid, char *message)
+void	ft_send_message(int pid, char *message)
 {
 	size_t	i;
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 {
 	g_data.received_bit = 0;
 	signal(SIGUSR1, ft_received_message);
-	signal(SIGUSR2, ft_receiveid_bit);
+	signal(SIGUSR2, ft_received_bit);
 	if (argc == 3 && !(ft_atoi(argv[1]) <= 0))
 		ft_send_message(ft_atoi(argv[1]), argv[2]);
 	else
