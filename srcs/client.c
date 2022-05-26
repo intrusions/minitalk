@@ -12,6 +12,23 @@
 
 #include "minitalk.h"
 
+t_data	g_data;
+
+void	ft_receiveid_bit(int signum)
+{
+	if (signum == SIGUSR2)
+		g_data.received_bit = 1;
+}
+
+void	ft_received_message(int signum)
+{
+	if (signum == SIGUSR1)
+	{
+		ft_putstr_fd("received\n", 1);
+		exit(0);
+	}
+}
+
 static void	ft_send_char(int pid, char c)
 {
 	int	i;
@@ -24,7 +41,12 @@ static void	ft_send_char(int pid, char c)
 		else
 			kill(pid, SIGUSR2);
 		i--;
-		usleep(100);
+		sleep(1);
+		while (!g_data.received_bit)
+		{
+			pause();
+			g_data.received_bit = 0;
+		}
 	}
 }
 
@@ -39,6 +61,9 @@ static void	ft_send_message(int pid, char *message)
 
 int	main(int argc, char **argv)
 {
+	g_data.received_bit = 0;
+	signal(SIGUSR1, ft_received_message);
+	signal(SIGUSR2, ft_receiveid_bit);
 	if (argc == 3 && !(ft_atoi(argv[1]) <= 0))
 		ft_send_message(ft_atoi(argv[1]), argv[2]);
 	else
