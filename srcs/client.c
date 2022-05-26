@@ -16,8 +16,8 @@ t_data	g_data;
 
 void	ft_received_bit(int signum)
 {
-	if (signum == SIGUSR2)
-		g_data.received_bit = 1;
+	(void)signum;
+	g_data.received_bit = 1;
 }
 
 void	ft_received_message(int signum)
@@ -40,13 +40,13 @@ void	ft_send_char(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		i--;
 		sleep(1);
 		while (!g_data.received_bit)
 		{
 			pause();
 			g_data.received_bit = 0;
 		}
+		i--;
 	}
 }
 

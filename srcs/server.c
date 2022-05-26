@@ -14,8 +14,8 @@
 
 void	ft_get_message(int signum, siginfo_t *info, void *context)
 {
-	static char	c = 0;
-	static int	bit = 128;
+	static unsigned char	c = 0;
+	static unsigned char	bit = 128;
 
 	(void)context;
 	if (signum == SIGUSR1)
